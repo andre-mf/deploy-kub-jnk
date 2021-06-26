@@ -10,9 +10,15 @@ pipeline {
         //     }
         // }
         
+        // stage('Get source') {
+        //     steps {
+        //         git url: 'https://github.com/andre-mf/deploy-kub-jnk', branch: 'main'
+        //     }
+        // }
+
         stage('Get source') {
             steps {
-                git url: 'https://github.com/andre-mf/deploy-kub-jnk', branch: 'main'
+                git url: 'https://github.com/andre-mf/pedelogo-catalogo', branch: 'main'
             }
         }
 
