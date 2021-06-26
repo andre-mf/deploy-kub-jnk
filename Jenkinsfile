@@ -6,7 +6,7 @@ pipeline {
         
         stage('Get source') {
             steps {
-                git url: 'https://github.com/andre-mf/deploy-kub-jnk', branch: 'main'
+                git url: 'https://github.com/andre-mf/deploy-kub-jnk.git', branch: 'main'
             }
         }
 
