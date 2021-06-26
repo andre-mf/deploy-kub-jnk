@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                     dockerapp = docker.build("andremf/api-teste:${env.BUILD_ID}",
-                    '-f ./src/PedeLogo.Catalogo.Api/Dockerfile .')
+                    '-f ./api-produto/src/Dockerfile .')
                 }
             }
         }
