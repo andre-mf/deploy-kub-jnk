@@ -2,44 +2,44 @@ pipeline {
     
     agent any
 
-    stages{
+    stages {
         
         stage('Get source') {
             steps {
-                git url: 'https://github.com/andre-mf/deploy-kub-jnk.git', branch: 'main'
+                git url: 'https://github.com/andre-mf/deploy-kub-jnk', branch: 'main'
             }
         }
 
-        stage('Docker Build') {
-            steps {
-                script {
-                    dockerapp = docker.build("andremf/api-teste:${env.BUILD_ID}",
-                    '-f ./api-produto/src/Dockerfile .')
-                }
-            }
-        }
+        // stage('Docker Build') {
+        //     steps {
+        //         script {
+        //             dockerapp = docker.build("andremf/api-teste:${env.BUILD_ID}",
+        //             '-f ./api-produto/src/Dockerfile .')
+        //         }
+        //     }
+        // }
 
-        stage('Docker Push Image') {
-            steps {
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                        dockerapp.push('latest')
-                        dockerapp.push("${env.BUILD_ID}")
-                    }
-                }
-            }
-        }
+        // stage('Docker Push Image') {
+        //     steps {
+        //         script {
+        //             docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+        //                 dockerapp.push('latest')
+        //                 dockerapp.push("${env.BUILD_ID}")
+        //             }
+        //         }
+        //     }
+        // }
 
-        stage('Deploy Kubernetes') {
-            agent {
-                kubernetes {
-                    cloud 'kubernetes'
-                }
-            }
+        // stage('Deploy Kubernetes') {
+        //     agent {
+        //         kubernetes {
+        //             cloud 'kubernetes'
+        //         }
+        //     }
 
-            steps {
-                kubernetesDeploy(configs: '**/k8s/**', kubeconfigId: 'kubeconfig')
-            }
-        }
+        //     steps {
+        //         kubernetesDeploy(configs: '**/k8s/**', kubeconfigId: 'kubeconfig')
+        //     }
+        // }
     }
 }
