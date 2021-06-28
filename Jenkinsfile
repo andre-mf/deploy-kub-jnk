@@ -16,7 +16,7 @@ pipeline {
                 sh('pwd')
                 script {
                     dockerapp = docker.build("andremf/api-teste:${env.BUILD_ID}",
-                    '-f ./src/Dockerfile .')
+                    '-f ./api-produto/src/Dockerfile .')
                 }
             }
         }
