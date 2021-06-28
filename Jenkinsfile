@@ -12,8 +12,8 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                // sh('ls -la')
-                // sh('pwd')
+                sh('ls -la')
+                sh('pwd')
                 script {
                     dockerapp = docker.build("andremf/api-teste:${env.BUILD_ID}",
                     '-f ./src/Dockerfile .')
