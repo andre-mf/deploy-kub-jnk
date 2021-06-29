@@ -1,7 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  description: "API de CADASTRINHO de Produtos"
+  description: "API de CADASTRINHOS de Produtos"
   version: "1.0.0"
   title: "Cadastro de Produtos"
   contact:
