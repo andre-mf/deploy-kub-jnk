@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: andremf/api-bootcamp-produto
+          image: andremf/api-teste
           resources:
             requests:
               memory: "32Mi"
