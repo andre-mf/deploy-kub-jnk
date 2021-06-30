@@ -41,8 +41,8 @@ pipeline {
             }
 
             steps {
-                sh 'sed -i "s/{{tag}}/$tag_version/g" ./k8s/api/deployment.yaml'
-                sh 'cat ./k8s/api/deployment.yaml'
+                sh 'sed -i "s/{{tag}}/$tag_version/g" ./api-produto/k8s/api/deployment.yaml'
+                sh 'cat ./api-produto/k8s/api/deployment.yaml'
                 kubernetesDeploy(configs: '**/k8s/**', kubeconfigId: 'kubeconfig')
             }
         }
