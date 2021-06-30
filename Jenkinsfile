@@ -3,7 +3,6 @@ pipeline {
     agent any
 
     stages {
-        
         stage('Get source') {
             steps {
                 git url: 'https://github.com/andre-mf/deploy-kub-jnk', branch: 'main'
@@ -12,8 +11,6 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh('ls -la')
-                sh('pwd')
                 script {
                     dockerapp = docker.build("andremf/api-teste:${env.BUILD_ID}",
                     '-f ./api-produto/src/Dockerfile ./api-produto/src')
@@ -39,7 +36,13 @@ pipeline {
                 }
             }
 
+            environment {
+                tag_version = "${env.BUILD_ID}"
+            }
+
             steps {
+                sh 'sed -i "s/{{tag}}/$tag_version/g" ./k8s/api/deployment.yaml'
+                sh 'cat ./k8s/api/deployment.yaml'
                 kubernetesDeploy(configs: '**/k8s/**', kubeconfigId: 'kubeconfig')
             }
         }
